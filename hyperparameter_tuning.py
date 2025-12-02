@@ -114,7 +114,7 @@ class HyperparameterTuner:
         Returns:
             Dictionary with best parameters and CV score
         """
-        print(f"\n🔧 {target_name.upper()} Model Tuning Başlıyor...")
+        print(f"\n🔧 {target_name.upper()} Model Tuning Starting...")
         print(f"   Model: {self.model_type}")
         print(f"   Search: {self.search_type}")
         print(f"   CV Folds: {self.cv_folds}")
@@ -134,7 +134,7 @@ class HyperparameterTuner:
         start_time = time.time()
         
         if self.search_type == 'grid':
-            print(f"   Grid Size: {np.prod([len(v) for v in param_grid.values()]):,} kombinasyon")
+            print(f"   Grid Size: {np.prod([len(v) for v in param_grid.values()]):,} combinations")
             search = GridSearchCV(
                 base_model, param_grid, cv=cv,
                 scoring=scorer, n_jobs=self.n_jobs,
@@ -259,7 +259,7 @@ class HyperparameterTuner:
                          params_path: str = 'tuned_params.pkl'):
         """Save tuned models and parameters"""
         if self.best_model_enter is None or self.best_model_exit is None:
-            raise ValueError("Model henüz tune edilmedi!")
+            raise ValueError("Model has not been tuned yet!")
         
         joblib.dump(self.best_model_enter, enter_path)
         joblib.dump(self.best_model_exit, exit_path)

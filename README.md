@@ -34,9 +34,9 @@ This project addresses the Barbados Traffic Analysis Challenge, focusing on pred
 
 ## 🚀 Quick Start
 
-### 1. Install Dependencies
+### 1. Install Dependencies (Windows PowerShell)
 
-```bash
+```powershell
 pip install -r requirements.txt
 ```
 
@@ -47,7 +47,7 @@ Ensure video files are in the `videos/` directory:
 videos/normanniles1/*.mp4
 ```
 
-### 3. Run Quick Demo
+### 3. Run Quick Demo (plots and sample predictions)
 
 ```powershell
 python quick_start.py
@@ -65,11 +65,13 @@ python traffic_analysis_solution.py
 python test_prediction.py
 ```
 
-### 6. Analyze Results
+### 6. Analyze Results and Visualizations
 
 ```powershell
 python analyze_results.py
 ```
+
+This generates English-labeled plots like `data_distribution.png`, `hourly_distribution.png`, `hourly_congestion_pattern.png`, `rush_hour_analysis.png`, and a summary `analysis_report.md`.
 
 ## 🔬 Technical Approach
 
