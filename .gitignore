@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Models and artifacts
+*.pkl
+models/
+artifacts/
+
+# Data files
+*.csv
+*.parquet
+data/
+
+# Logs and reports
+logs/
+reports/
+*.log
+
+# OS/Editor
+.DS_Store
+Thumbs.db
+.vscode/

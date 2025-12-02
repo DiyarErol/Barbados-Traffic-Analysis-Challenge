@@ -1,0 +1,1102 @@
+{
+  "model_name": "traffic_congestion_model",
+  "last_updated": "2025-12-02T10:03:20.176189",
+  "performance_log": [
+    {
+      "timestamp": "2025-12-01T18:46:13.775750",
+      "n_samples": 152,
+      "accuracy": 0.8486842105263158,
+      "f1_score": 0.8479288177672465,
+      "avg_confidence": 0.5069501988555001,
+      "batch_id": 1,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          27,
+          0,
+          4,
+          4
+        ],
+        [
+          2,
+          28,
+          1,
+          5
+        ],
+        [
+          2,
+          0,
+          33,
+          1
+        ],
+        [
+          2,
+          2,
+          0,
+          41
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-01T19:46:13.781325",
+      "n_samples": 50,
+      "accuracy": 0.92,
+      "f1_score": 0.9187451669293101,
+      "avg_confidence": 0.5168828846212344,
+      "batch_id": 2,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          13,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          10,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          15,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-01T20:46:13.784329",
+      "n_samples": 122,
+      "accuracy": 0.8442622950819673,
+      "f1_score": 0.8444721259361503,
+      "avg_confidence": 0.5006430921843694,
+      "batch_id": 3,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          30,
+          1,
+          4,
+          2
+        ],
+        [
+          2,
+          23,
+          3,
+          1
+        ],
+        [
+          2,
+          1,
+          24,
+          1
+        ],
+        [
+          0,
+          1,
+          1,
+          26
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-01T21:46:13.787205",
+      "n_samples": 138,
+      "accuracy": 0.8043478260869565,
+      "f1_score": 0.8042925422659953,
+      "avg_confidence": 0.5166068980188674,
+      "batch_id": 4,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          36,
+          2,
+          2,
+          3
+        ],
+        [
+          3,
+          22,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          24,
+          2
+        ],
+        [
+          2,
+          3,
+          2,
+          29
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-01T22:46:13.789367",
+      "n_samples": 93,
+      "accuracy": 0.23655913978494625,
+      "f1_score": 0.2337756424921833,
+      "avg_confidence": 0.5087220848665857,
+      "batch_id": 5,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          8,
+          5,
+          4,
+          5
+        ],
+        [
+          4,
+          3,
+          7,
+          5
+        ],
+        [
+          7,
+          5,
+          7,
+          9
+        ],
+        [
+          6,
+          4,
+          10,
+          4
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-01T23:46:13.791883",
+      "n_samples": 190,
+      "accuracy": 0.8,
+      "f1_score": 0.800595784017818,
+      "avg_confidence": 0.5152441359455854,
+      "batch_id": 6,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          38,
+          4,
+          4,
+          4
+        ],
+        [
+          2,
+          30,
+          3,
+          3
+        ],
+        [
+          2,
+          4,
+          45,
+          1
+        ],
+        [
+          2,
+          5,
+          4,
+          39
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T00:46:13.794609",
+      "n_samples": 132,
+      "accuracy": 0.26515151515151514,
+      "f1_score": 0.26733873909197564,
+      "avg_confidence": 0.5308807830330213,
+      "batch_id": 7,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          5,
+          3,
+          8,
+          12
+        ],
+        [
+          9,
+          12,
+          4,
+          7
+        ],
+        [
+          9,
+          7,
+          12,
+          11
+        ],
+        [
+          6,
+          11,
+          10,
+          6
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T01:46:13.796827",
+      "n_samples": 148,
+      "accuracy": 0.8108108108108109,
+      "f1_score": 0.8103143103143103,
+      "avg_confidence": 0.5200544997899852,
+      "batch_id": 8,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          22,
+          2,
+          1,
+          3
+        ],
+        [
+          3,
+          24,
+          6,
+          0
+        ],
+        [
+          1,
+          4,
+          41,
+          3
+        ],
+        [
+          1,
+          2,
+          2,
+          33
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T02:46:13.799058",
+      "n_samples": 158,
+      "accuracy": 0.7911392405063291,
+      "f1_score": 0.7908349727160608,
+      "avg_confidence": 0.5324914548784683,
+      "batch_id": 9,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          17,
+          5,
+          0,
+          2
+        ],
+        [
+          1,
+          42,
+          4,
+          1
+        ],
+        [
+          3,
+          3,
+          38,
+          2
+        ],
+        [
+          5,
+          4,
+          3,
+          28
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T03:46:13.803234",
+      "n_samples": 157,
+      "accuracy": 0.7961783439490446,
+      "f1_score": 0.7958579208910617,
+      "avg_confidence": 0.5399718379090939,
+      "batch_id": 10,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          21,
+          2,
+          4,
+          2
+        ],
+        [
+          3,
+          34,
+          2,
+          3
+        ],
+        [
+          0,
+          6,
+          38,
+          3
+        ],
+        [
+          2,
+          2,
+          3,
+          32
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T04:46:13.805947",
+      "n_samples": 62,
+      "accuracy": 0.7741935483870968,
+      "f1_score": 0.7689170303185876,
+      "avg_confidence": 0.512044484983694,
+      "batch_id": 11,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          9,
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          12,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          18,
+          0
+        ],
+        [
+          3,
+          1,
+          2,
+          9
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T05:46:13.809139",
+      "n_samples": 101,
+      "accuracy": 0.7623762376237624,
+      "f1_score": 0.762652202571942,
+      "avg_confidence": 0.5148399025956887,
+      "batch_id": 12,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          25,
+          3,
+          2,
+          3
+        ],
+        [
+          1,
+          17,
+          0,
+          2
+        ],
+        [
+          4,
+          1,
+          20,
+          1
+        ],
+        [
+          3,
+          3,
+          1,
+          15
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T06:46:13.812801",
+      "n_samples": 160,
+      "accuracy": 0.75625,
+      "f1_score": 0.7570526594908863,
+      "avg_confidence": 0.5145865709284927,
+      "batch_id": 13,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          30,
+          4,
+          4,
+          3
+        ],
+        [
+          6,
+          31,
+          6,
+          0
+        ],
+        [
+          1,
+          2,
+          31,
+          6
+        ],
+        [
+          2,
+          0,
+          5,
+          29
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T07:46:13.815077",
+      "n_samples": 73,
+      "accuracy": 0.2876712328767123,
+      "f1_score": 0.29115739252725553,
+      "avg_confidence": 0.4908252559519193,
+      "batch_id": 14,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          5,
+          4,
+          6,
+          7
+        ],
+        [
+          3,
+          7,
+          8,
+          1
+        ],
+        [
+          2,
+          2,
+          4,
+          4
+        ],
+        [
+          3,
+          7,
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T08:46:13.821546",
+      "n_samples": 118,
+      "accuracy": 0.7203389830508474,
+      "f1_score": 0.7182971294720791,
+      "avg_confidence": 0.5158271736525972,
+      "batch_id": 15,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          12,
+          2,
+          2,
+          3
+        ],
+        [
+          2,
+          23,
+          4,
+          1
+        ],
+        [
+          5,
+          2,
+          19,
+          6
+        ],
+        [
+          1,
+          2,
+          3,
+          31
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-01T19:03:20.119066",
+      "n_samples": 152,
+      "accuracy": 0.8486842105263158,
+      "f1_score": 0.8479288177672465,
+      "avg_confidence": 0.5069501988555001,
+      "batch_id": 1,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          27,
+          0,
+          4,
+          4
+        ],
+        [
+          2,
+          28,
+          1,
+          5
+        ],
+        [
+          2,
+          0,
+          33,
+          1
+        ],
+        [
+          2,
+          2,
+          0,
+          41
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-01T20:03:20.125111",
+      "n_samples": 50,
+      "accuracy": 0.92,
+      "f1_score": 0.9187451669293101,
+      "avg_confidence": 0.5168828846212344,
+      "batch_id": 2,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          13,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          10,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          15,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-01T21:03:20.127122",
+      "n_samples": 122,
+      "accuracy": 0.8442622950819673,
+      "f1_score": 0.8444721259361503,
+      "avg_confidence": 0.5006430921843694,
+      "batch_id": 3,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          30,
+          1,
+          4,
+          2
+        ],
+        [
+          2,
+          23,
+          3,
+          1
+        ],
+        [
+          2,
+          1,
+          24,
+          1
+        ],
+        [
+          0,
+          1,
+          1,
+          26
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-01T22:03:20.130097",
+      "n_samples": 138,
+      "accuracy": 0.8043478260869565,
+      "f1_score": 0.8042925422659953,
+      "avg_confidence": 0.5166068980188674,
+      "batch_id": 4,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          36,
+          2,
+          2,
+          3
+        ],
+        [
+          3,
+          22,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          24,
+          2
+        ],
+        [
+          2,
+          3,
+          2,
+          29
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-01T23:03:20.133095",
+      "n_samples": 93,
+      "accuracy": 0.23655913978494625,
+      "f1_score": 0.2337756424921833,
+      "avg_confidence": 0.5087220848665857,
+      "batch_id": 5,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          8,
+          5,
+          4,
+          5
+        ],
+        [
+          4,
+          3,
+          7,
+          5
+        ],
+        [
+          7,
+          5,
+          7,
+          9
+        ],
+        [
+          6,
+          4,
+          10,
+          4
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T00:03:20.137040",
+      "n_samples": 190,
+      "accuracy": 0.8,
+      "f1_score": 0.800595784017818,
+      "avg_confidence": 0.5152441359455854,
+      "batch_id": 6,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          38,
+          4,
+          4,
+          4
+        ],
+        [
+          2,
+          30,
+          3,
+          3
+        ],
+        [
+          2,
+          4,
+          45,
+          1
+        ],
+        [
+          2,
+          5,
+          4,
+          39
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T01:03:20.140120",
+      "n_samples": 132,
+      "accuracy": 0.26515151515151514,
+      "f1_score": 0.26733873909197564,
+      "avg_confidence": 0.5308807830330213,
+      "batch_id": 7,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          5,
+          3,
+          8,
+          12
+        ],
+        [
+          9,
+          12,
+          4,
+          7
+        ],
+        [
+          9,
+          7,
+          12,
+          11
+        ],
+        [
+          6,
+          11,
+          10,
+          6
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T02:03:20.145096",
+      "n_samples": 148,
+      "accuracy": 0.8108108108108109,
+      "f1_score": 0.8103143103143103,
+      "avg_confidence": 0.5200544997899852,
+      "batch_id": 8,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          22,
+          2,
+          1,
+          3
+        ],
+        [
+          3,
+          24,
+          6,
+          0
+        ],
+        [
+          1,
+          4,
+          41,
+          3
+        ],
+        [
+          1,
+          2,
+          2,
+          33
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T03:03:20.148149",
+      "n_samples": 158,
+      "accuracy": 0.7911392405063291,
+      "f1_score": 0.7908349727160608,
+      "avg_confidence": 0.5324914548784683,
+      "batch_id": 9,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          17,
+          5,
+          0,
+          2
+        ],
+        [
+          1,
+          42,
+          4,
+          1
+        ],
+        [
+          3,
+          3,
+          38,
+          2
+        ],
+        [
+          5,
+          4,
+          3,
+          28
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T04:03:20.154227",
+      "n_samples": 157,
+      "accuracy": 0.7961783439490446,
+      "f1_score": 0.7958579208910617,
+      "avg_confidence": 0.5399718379090939,
+      "batch_id": 10,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          21,
+          2,
+          4,
+          2
+        ],
+        [
+          3,
+          34,
+          2,
+          3
+        ],
+        [
+          0,
+          6,
+          38,
+          3
+        ],
+        [
+          2,
+          2,
+          3,
+          32
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T05:03:20.157205",
+      "n_samples": 62,
+      "accuracy": 0.7741935483870968,
+      "f1_score": 0.7689170303185876,
+      "avg_confidence": 0.512044484983694,
+      "batch_id": 11,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          9,
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          12,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          18,
+          0
+        ],
+        [
+          3,
+          1,
+          2,
+          9
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T06:03:20.161181",
+      "n_samples": 101,
+      "accuracy": 0.7623762376237624,
+      "f1_score": 0.762652202571942,
+      "avg_confidence": 0.5148399025956887,
+      "batch_id": 12,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          25,
+          3,
+          2,
+          3
+        ],
+        [
+          1,
+          17,
+          0,
+          2
+        ],
+        [
+          4,
+          1,
+          20,
+          1
+        ],
+        [
+          3,
+          3,
+          1,
+          15
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T07:03:20.166128",
+      "n_samples": 160,
+      "accuracy": 0.75625,
+      "f1_score": 0.7570526594908863,
+      "avg_confidence": 0.5145865709284927,
+      "batch_id": 13,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          30,
+          4,
+          4,
+          3
+        ],
+        [
+          6,
+          31,
+          6,
+          0
+        ],
+        [
+          1,
+          2,
+          31,
+          6
+        ],
+        [
+          2,
+          0,
+          5,
+          29
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T08:03:20.169060",
+      "n_samples": 73,
+      "accuracy": 0.2876712328767123,
+      "f1_score": 0.29115739252725553,
+      "avg_confidence": 0.4908252559519193,
+      "batch_id": 14,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          5,
+          4,
+          6,
+          7
+        ],
+        [
+          3,
+          7,
+          8,
+          1
+        ],
+        [
+          2,
+          2,
+          4,
+          4
+        ],
+        [
+          3,
+          7,
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "timestamp": "2025-12-02T09:03:20.174051",
+      "n_samples": 118,
+      "accuracy": 0.7203389830508474,
+      "f1_score": 0.7182971294720791,
+      "avg_confidence": 0.5158271736525972,
+      "batch_id": 15,
+      "data_source": "simulation",
+      "confusion_matrix": [
+        [
+          12,
+          2,
+          2,
+          3
+        ],
+        [
+          2,
+          23,
+          4,
+          1
+        ],
+        [
+          5,
+          2,
+          19,
+          6
+        ],
+        [
+          1,
+          2,
+          3,
+          31
+        ]
+      ]
+    }
+  ],
+  "drift_alerts": [
+    {
+      "timestamp": "2025-12-02T07:46:13.815077",
+      "type": "performance_degradation",
+      "baseline_accuracy": 0.7117133381897885,
+      "current_accuracy": 0.2876712328767123,
+      "accuracy_drop": 0.42404210531307623,
+      "baseline_f1": 0.7114156022422112,
+      "current_f1": 0.29115739252725553,
+      "f1_drop": 0.4202582097149557,
+      "severity": "high"
+    },
+    {
+      "timestamp": "2025-12-01T23:03:20.133095",
+      "type": "performance_degradation",
+      "baseline_accuracy": 0.7117133381897885,
+      "current_accuracy": 0.23655913978494625,
+      "accuracy_drop": 0.4751541984048423,
+      "baseline_f1": 0.7114156022422112,
+      "current_f1": 0.2337756424921833,
+      "f1_drop": 0.47763995975002793,
+      "severity": "high"
+    },
+    {
+      "timestamp": "2025-12-02T01:03:20.140120",
+      "type": "performance_degradation",
+      "baseline_accuracy": 0.7117133381897885,
+      "current_accuracy": 0.26515151515151514,
+      "accuracy_drop": 0.4465618230382734,
+      "baseline_f1": 0.7114156022422112,
+      "current_f1": 0.26733873909197564,
+      "f1_drop": 0.4440768631502356,
+      "severity": "high"
+    },
+    {
+      "timestamp": "2025-12-02T08:03:20.169060",
+      "type": "performance_degradation",
+      "baseline_accuracy": 0.7117133381897885,
+      "current_accuracy": 0.2876712328767123,
+      "accuracy_drop": 0.42404210531307623,
+      "baseline_f1": 0.7114156022422112,
+      "current_f1": 0.29115739252725553,
+      "f1_drop": 0.4202582097149557,
+      "severity": "high"
+    }
+  ]
+}
