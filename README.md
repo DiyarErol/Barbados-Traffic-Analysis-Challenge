@@ -298,8 +298,8 @@ Contributions welcome! Please:
 ## 📞 Contact
 
 - **Competition**: [Zindi Africa](https://zindi.africa/)
-- **Author**: [Your Name]
-- **Email**: [your.email@example.com]
+- **Author**: [diyar]
+
 
 ---
 
