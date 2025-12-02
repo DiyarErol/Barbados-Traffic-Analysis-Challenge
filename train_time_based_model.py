@@ -17,13 +17,13 @@ def train_time_based_model():
     """Train model using only time-based features"""
     
     print('='*60)
-    print('🎓 ZAMAN BAZLI MODEL EĞİTİMİ')
+    print('🎓 TIME-BASED MODEL TRAINING')
     print('='*60)
     
     # Load data
-    print('\n📁 Veri yükleniyor...')
+    print('\n📁 Loading Data...')
     df = pd.read_csv('Train.csv')
-    print(f'✓ Toplam kayıt: {len(df):,}')
+    print(f'✓ Total records: {len(df):,}')
     
     # Time features
     df['datetime'] = pd.to_datetime(df['datetimestamp_start'])
@@ -61,7 +61,7 @@ def train_time_based_model():
     y_enter = le_enter.fit_transform(df['congestion_enter_rating'])
     y_exit = le_exit.fit_transform(df['congestion_exit_rating'])
     
-    print(f'\n📊 Sınıf Dağılımı:')
+    print(f'\n📊 Class Distribution:')
     print(f'\nEnter:')
     for label, count in zip(*np.unique(y_enter, return_counts=True)):
         print(f'  {le_enter.inverse_transform([label])[0]}: {count:,}')
@@ -75,11 +75,11 @@ def train_time_based_model():
         X, y_enter, y_exit, test_size=0.2, random_state=42, stratify=y_enter
     )
     
-    print(f'\n🔧 Eğitim seti: {len(X_train):,}')
-    print(f'🧪 Test seti: {len(X_test):,}')
+    print(f'\n🔧 Training set: {len(X_train):,}')
+    print(f'🧪 Test set: {len(X_test):,}')
     
     # Train models
-    print(f'\n🎯 Model eğitiliyor...')
+    print(f'\n🎯 Training model...')
     
     # Enter model - RandomForest with balanced class weights
     print('  Enter model (RandomForest)...')
@@ -105,14 +105,14 @@ def train_time_based_model():
     exit_model.fit(X_train, y_exit_train)
     
     # Evaluate
-    print(f'\n📊 MODEL PERFORMANSI:')
+    print(f'\n📊 MODEL PERFORMANCE:')
     
     # Enter
     enter_pred = enter_model.predict(X_test)
     enter_acc = accuracy_score(y_enter_test, enter_pred)
     print(f'\n🚦 Enter Congestion:')
     print(f'  Accuracy: {enter_acc:.4f} ({enter_acc*100:.2f}%)')
-    print('\nDetaylı Rapor:')
+    print('\nDetailed Report:')
     print(classification_report(y_enter_test, enter_pred, 
                                 target_names=le_enter.classes_, 
                                 zero_division=0))
@@ -122,13 +122,13 @@ def train_time_based_model():
     exit_acc = accuracy_score(y_exit_test, exit_pred)
     print(f'\n🚦 Exit Congestion:')
     print(f'  Accuracy: {exit_acc:.4f} ({exit_acc*100:.2f}%)')
-    print('\nDetaylı Rapor:')
+    print('\nDetailed Report:')
     print(classification_report(y_exit_test, exit_pred, 
                                 target_names=le_exit.classes_,
                                 zero_division=0))
     
     # Feature importance
-    print(f'\n📈 En Önemli Özellikler (Enter):')
+    print(f'\n📈 Top Features (Enter):')
     feature_importance = pd.DataFrame({
         'feature': feature_cols,
         'importance': enter_model.feature_importances_
@@ -138,7 +138,7 @@ def train_time_based_model():
         print(f'  {row["feature"]}: {row["importance"]:.4f}')
     
     # Save models
-    print(f'\n💾 Modeller kaydediliyor...')
+    print(f'\n💾 Saving models...')
     joblib.dump(enter_model, 'time_based_enter_model.pkl')
     joblib.dump(exit_model, 'time_based_exit_model.pkl')
     joblib.dump({'enter': le_enter, 'exit': le_exit}, 'time_based_label_encoders.pkl')
@@ -156,6 +156,6 @@ if __name__ == '__main__':
     models = train_time_based_model()
     
     print('\n' + '='*60)
-    print('✅ MODEL EĞİTİMİ TAMAMLANDI!')
+    print('✅ MODEL TRAINING COMPLETED!')
     print('='*60)
-    print('\n💡 Şimdi generate_final_submission.py ile submission oluşturun')
+    print('\n💡 Now create a submission with generate_final_submission.py')

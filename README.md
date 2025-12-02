@@ -29,6 +29,7 @@ This project addresses the Barbados Traffic Analysis Challenge, focusing on pred
 └── videos/                         # Video files directory
     └── normanniles1/
         ├── *.mp4                   # Video segments
+        └── ...
 ```
 
 ## 🚀 Quick Start
@@ -48,25 +49,25 @@ videos/normanniles1/*.mp4
 
 ### 3. Run Quick Demo
 
-```bash
+```powershell
 python quick_start.py
 ```
 
 ### 4. Train Full Model
 
-```bash
+```powershell
 python traffic_analysis_solution.py
 ```
 
 ### 5. Generate Predictions
 
-```bash
+```powershell
 python test_prediction.py
 ```
 
 ### 6. Analyze Results
 
-```bash
+```powershell
 python analyze_results.py
 ```
 

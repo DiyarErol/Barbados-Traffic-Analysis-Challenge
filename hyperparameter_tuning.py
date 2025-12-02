@@ -162,7 +162,7 @@ class HyperparameterTuner:
             'elapsed_time': elapsed_time
         }
         
-        print(f"\n✓ Tuning Tamamlandı ({elapsed_time:.1f} saniye)")
+        print(f"\n✓ Tuning Completed ({elapsed_time:.1f} seconds)")
         print(f"   Best CV Score: {search.best_score_:.4f}")
         print(f"   Best Parameters:")
         for param, value in search.best_params_.items():
@@ -201,11 +201,11 @@ class HyperparameterTuner:
         self.search_results['exit'] = exit_results
         
         print("\n" + "="*60)
-        print("✅ TUNING TAMAMLANDI!")
+        print("✅ TUNING COMPLETED!")
         print("="*60)
         
         # Summary
-        print("\n📊 Sonuçlar:")
+        print("\n📊 Results:")
         print(f"   Enter CV Score: {enter_results['best_cv_score']:.4f} ({enter_results['elapsed_time']:.1f}s)")
         print(f"   Exit CV Score: {exit_results['best_cv_score']:.4f} ({exit_results['elapsed_time']:.1f}s)")
     
@@ -223,7 +223,7 @@ class HyperparameterTuner:
             Dictionary with test metrics
         """
         if self.best_model_enter is None or self.best_model_exit is None:
-            raise ValueError("Model henüz tune edilmedi!")
+            raise ValueError("Model has not been tuned yet!")
         
         # Predict
         enter_pred = self.best_model_enter.predict(X_test)
@@ -272,7 +272,7 @@ class HyperparameterTuner:
         }
         joblib.dump(params, params_path)
         
-        print(f"\n💾 Modeller Kaydedildi:")
+        print(f"\n💾 Models Saved:")
         print(f"   - {enter_path}")
         print(f"   - {exit_path}")
         print(f"   - {params_path}")
@@ -280,7 +280,7 @@ class HyperparameterTuner:
     def get_parameter_importance(self) -> pd.DataFrame:
         """Analyze parameter importance from CV results"""
         if not self.search_results:
-            raise ValueError("Henüz tuning yapılmadı!")
+            raise ValueError("Tuning has not been performed yet!")
         
         results_list = []
         
@@ -316,13 +316,13 @@ def demo_tuning():
     print("="*60)
     
     # Load training data
-    print("\n📁 Veri Yükleniyor...")
+    print("\n📁 Loading Data...")
     train_df = pd.read_csv('Train.csv')
     
-    print(f"✓ Toplam Örnek: {len(train_df)}")
+    print(f"✓ Total Samples: {len(train_df)}")
     
     # Generate synthetic features (same as ensemble demo)
-    print("\n🔧 Sentetik Özellikler Oluşturuluyor...")
+    print("\n🔧 Creating Synthetic Features...")
     np.random.seed(42)
     
     features = pd.DataFrame()
@@ -376,8 +376,8 @@ def demo_tuning():
         stratify=y_enter_subset
     )
     
-    print(f"✓ Eğitim Seti: {len(X_train)} örnek")
-    print(f"✓ Test Seti: {len(X_test)} örnek")
+    print(f"✓ Training Set: {len(X_train)} samples")
+    print(f"✓ Test Set: {len(X_test)} samples")
     
     # Test RandomizedSearch (faster)
     print("\n" + "="*60)
@@ -405,9 +405,9 @@ def demo_tuning():
     print(param_importance.to_string(index=False))
     
     print("\n" + "="*60)
-    print("✅ TUNING DEMO TAMAMLANDI!")
+    print("✅ TUNING DEMO COMPLETED!")
     print("="*60)
-    print("\nKullanım:")
+    print("\nUsage:")
     print("  from hyperparameter_tuning import HyperparameterTuner")
     print("  tuner = HyperparameterTuner(model_type='gradient_boosting', search_type='random')")
     print("  tuner.tune_both_targets(X_train, y_enter, y_exit, n_iter=50)")

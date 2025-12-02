@@ -1,6 +1,6 @@
 """
-Hızlı başlangıç scripti - Örnek kullanım
-NOT: Gerçek video dosyaları gereklidir
+Quick start script - Example usage
+NOTE: Real video files are required
 """
 
 import os
@@ -12,19 +12,19 @@ warnings.filterwarnings('ignore')
 
 def quick_start_demo():
     """
-    Hızlı demo - veri var mı kontrol et ve temel iş akışını göster
+    Quick demo - check data presence and show basic workflow
     """
     print("=" * 80)
-    print("BARBADOS TRAFFIC ANALYSIS - HIZLI BAŞLANGIÇ")
+    print("BARBADOS TRAFFIC ANALYSIS - QUICK START")
     print("=" * 80)
     
-    # Veri dosyalarını kontrol et
-    print("\n1. Veri dosyaları kontrol ediliyor...")
+    # Check data files
+    print("\n1. Checking data files...")
     
     required_files = {
-        'Train.csv': 'Eğitim verisi',
-        'TestInputSegments.csv': 'Test input verisi',
-        'SampleSubmission.csv': 'Örnek submission formatı'
+        'Train.csv': 'Training data',
+        'TestInputSegments.csv': 'Test input data',
+        'SampleSubmission.csv': 'Sample submission format'
     }
     
     all_exists = True
@@ -32,22 +32,22 @@ def quick_start_demo():
         if os.path.exists(file):
             print(f"   ✓ {file} - {desc}")
         else:
-            print(f"   ✗ {file} - {desc} BULUNAMADI!")
+            print(f"   ✗ {file} - {desc} NOT FOUND!")
             all_exists = False
     
-    # Video klasörünü kontrol et
+    # Check video folder
     video_dir = "videos"
     if os.path.exists(video_dir):
         video_count = sum([len(files) for _, _, files in os.walk(video_dir)])
-        print(f"   ✓ {video_dir}/ klasörü - {video_count} dosya")
+        print(f"   ✓ {video_dir}/ folder - {video_count} files")
     else:
-        print(f"   ✗ {video_dir}/ klasörü BULUNAMADI!")
-        print(f"      Not: Video dosyalarını {video_dir}/ klasörüne koyun")
+        print(f"   ✗ {video_dir}/ folder NOT FOUND!")
+        print(f"      Note: Place video files under {video_dir}/")
         all_exists = False
     
     if not all_exists:
-        print("\n⚠️  Eksik dosyalar var! Lütfen tüm gerekli dosyaları hazırlayın.")
-        print("\nGerekli yapı:")
+        print("\n⚠️  Missing files! Please prepare all required files.")
+        print("\nRequired structure:")
         print("  ├── Train.csv")
         print("  ├── TestInputSegments.csv")
         print("  ├── SampleSubmission.csv")
@@ -57,36 +57,36 @@ def quick_start_demo():
         print("          └── ...")
         return
     
-    # Veriyi incele
-    print("\n2. Veri istatistikleri...")
+    # Inspect data
+    print("\n2. Data statistics...")
     train_df = pd.read_csv('Train.csv')
     test_df = pd.read_csv('TestInputSegments.csv')
     
-    print(f"   Eğitim örnekleri: {len(train_df)}")
-    print(f"   Test örnekleri: {len(test_df)}")
+    print(f"   Training samples: {len(train_df)}")
+    print(f"   Test samples: {len(test_df)}")
     
-    # Sınıf dağılımı
-    print("\n   Eğitim - Enter sınıf dağılımı:")
+    # Class distribution
+    print("\n   Training - Enter class distribution:")
     for label, count in train_df['congestion_enter_rating'].value_counts().items():
         pct = 100 * count / len(train_df)
         print(f"     {label:20s}: {count:5d} ({pct:5.1f}%)")
     
-    print("\n   Eğitim - Exit sınıf dağılımı:")
+    print("\n   Training - Exit class distribution:")
     for label, count in train_df['congestion_exit_rating'].value_counts().items():
         pct = 100 * count / len(train_df)
         print(f"     {label:20s}: {count:5d} ({pct:5.1f}%)")
     
-    # Örnek eğitim
-    print("\n3. Demo model eğitimi (ilk 500 örnek, tüm sınıflar dahil)...")
-    print("   NOT: Tam eğitim için tüm veriyi kullanın!")
+    # Sample training
+    print("\n3. Demo model training (first 500 samples, all classes included)...")
+    print("   NOTE: Use full data for complete training!")
     
-    choice = input("\n   Demo eğitimi başlatmak ister misiniz? (e/h): ").lower()
+    choice = input("\n   Start demo training? (y/n): ").lower()
     
-    if choice == 'e':
-        print("\n   Başlatılıyor...")
+    if choice == 'y':
+        print("\n   Starting...")
         
-        # Her sınıftan örnek içeren dengeli subset
-        # Bu, modelin tüm sınıfları görmesini sağlar
+        # Balanced subset with samples from each class
+        # Ensures the model sees all classes
         train_subset = []
         for label in train_df['congestion_enter_rating'].unique():
             label_samples = train_df[train_df['congestion_enter_rating'] == label].head(125)
@@ -95,38 +95,38 @@ def quick_start_demo():
         
         predictor = CongestionPredictor()
         
-        print("   Video özellikleri çıkarılıyor...")
+        print("   Extracting video features...")
         train_prepared = predictor.prepare_training_data(
             train_subset,
             video_base_path="videos"
         )
         
-        print("   Model eğitiliyor...")
+        print("   Training model...")
         predictor.train(train_prepared)
         
-        print("   Model kaydediliyor...")
+        print("   Saving model...")
         predictor.save_model("demo_model.pkl")
         
-        print("\n   ✓ Demo eğitimi tamamlandı!")
+        print("\n   ✓ Demo training completed!")
         print("     Model: demo_model.pkl")
         
-        # Özellik önemi
+        # Feature importance
         top_feats = predictor.get_top_features(n=10)
-        print("\n   En önemli 10 özellik:")
+        print("\n   Top 10 features:")
         print(top_feats[['Feature_Enter', 'Importance_Enter']].to_string(index=False))
     
-    print("\n4. Sonraki adımlar:")
-    print("   a) Tam eğitim için:")
+    print("\n4. Next steps:")
+    print("   a) Full training:")
     print("      python traffic_analysis_solution.py")
     print("   ")
-    print("   b) Test tahmini için:")
+    print("   b) Test prediction:")
     print("      python test_prediction.py")
     print("   ")
-    print("   c) Detaylı bilgi için:")
-    print("      README_TR.md dosyasını okuyun")
+    print("   c) Detailed information:")
+    print("      README.md")
     
     print("\n" + "=" * 80)
-    print("HIZLI BAŞLANGIÇ TAMAMLANDI")
+    print("QUICK START COMPLETED")
     print("=" * 80)
 
 

@@ -302,15 +302,15 @@ def demo_ensemble():
     print("="*60)
     
     # Load training data
-    print("\n📁 Veri Yükleniyor...")
+    print("\n📁 Loading Data...")
     train_df = pd.read_csv('Train.csv')
     
-    print(f"✓ Toplam Örnek: {len(train_df)}")
-    print(f"✓ Sınıf Dağılımı (Enter):")
+    print(f"✓ Total Samples: {len(train_df)}")
+    print(f"✓ Class Distribution (Enter):")
     print(train_df['congestion_enter_rating'].value_counts().sort_index())
     
     # Generate synthetic features for demo
-    print("\n🔧 Sentetik Özellikler Oluşturuluyor...")
+    print("\n🔧 Creating Synthetic Features...")
     np.random.seed(42)
     n_samples = len(train_df)
     
@@ -361,8 +361,8 @@ def demo_ensemble():
         stratify=train_df['congestion_enter_rating']
     )
     
-    print(f"✓ Eğitim Seti: {len(X_train)} örnek")
-    print(f"✓ Test Seti: {len(X_test)} örnek")
+    print(f"✓ Training Set: {len(X_train)} samples")
+    print(f"✓ Test Set: {len(X_test)} samples")
     
     # Test both ensemble types
     for ensemble_type in ['voting', 'stacking']:
@@ -384,9 +384,9 @@ def demo_ensemble():
         )
     
     print("\n" + "="*60)
-    print("✅ ENSEMBLE DEMO TAMAMLANDI!")
+    print("✅ ENSEMBLE DEMO COMPLETED!")
     print("="*60)
-    print("\nKullanım:")
+    print("\nUsage:")
     print("  from traffic_ensemble import EnsembleTrafficPredictor")
     print("  ensemble = EnsembleTrafficPredictor(ensemble_type='voting')")
     print("  ensemble.load_models('voting_ensemble_enter_model.pkl', ...)")

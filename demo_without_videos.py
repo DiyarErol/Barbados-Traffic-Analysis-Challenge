@@ -1,6 +1,6 @@
 """
-Video dosyaları olmadan test etmek için basitleştirilmiş demo
-Sentetik özellikler kullanır
+Simplified demo for testing without video files
+Uses synthetic features
 """
 
 import pandas as pd
@@ -13,22 +13,22 @@ import warnings
 warnings.filterwarnings('ignore')
 
 print("=" * 80)
-print("BARBADOS TRAFFIC ANALYSIS - BASİTLEŞTİRİLMİŞ DEMO")
-print("(Video dosyası gerektirmez - Sentetik özellikler kullanır)")
+print("BARBADOS TRAFFIC ANALYSIS - SIMPLIFIED DEMO")
+print("(No video files required - Uses synthetic features)")
 print("=" * 80)
 
-# 1. Veriyi yükle
-print("\n1. Veri yükleniyor...")
+# 1. Load data
+print("\n1. Loading data...")
 train_df = pd.read_csv('Train.csv')
-print(f"   Toplam eğitim örnekleri: {len(train_df)}")
+print(f"   Total training samples: {len(train_df)}")
 
-# 2. Sentetik özellikler oluştur (video yerine)
-print("\n2. Sentetik özellikler oluşturuluyor...")
-print("   (Gerçek uygulamada video işleme yapılacak)")
+# 2. Create synthetic features (instead of video)
+print("\n2. Creating synthetic features...")
+print("   (In production, video processing will be used)")
 
 np.random.seed(42)
 
-# Zaman özellikleri
+# Time features
 train_df['datetime'] = pd.to_datetime(train_df['video_time'])
 train_df['hour'] = train_df['datetime'].dt.hour
 train_df['minute'] = train_df['datetime'].dt.minute
@@ -39,16 +39,16 @@ train_df['is_rush_hour'] = train_df['hour'].apply(
     lambda x: 1 if (7 <= x <= 9) or (16 <= x <= 18) else 0
 )
 
-# Sinyal encoding
+# Signal encoding
 signal_mapping = {'none': 0, 'low': 1, 'medium': 2, 'high': 3}
 train_df['signaling_encoded'] = train_df['signaling'].map(signal_mapping).fillna(0)
 
-# Sentetik video özellikleri (gerçekte video işlemeden gelecek)
-print("   Sentetik video özellikleri ekleniyor...")
+# Synthetic video features (would come from video processing)
+print("   Adding synthetic video features...")
 
 # Tıkanıklığa göre farklı değerler üret
 def generate_synthetic_features(congestion_level):
-    """Tıkanıklık seviyesine göre gerçekçi sentetik özellikler"""
+    """Realistic synthetic features based on congestion level"""
     if congestion_level == 'free flowing':
         vehicle_count = np.random.uniform(5, 15)
         density = np.random.uniform(0.1, 0.3)
@@ -76,7 +76,7 @@ def generate_synthetic_features(congestion_level):
         'movement_std': movement * 0.3
     }
 
-# Her satır için sentetik özellikler üret
+# Generate synthetic features per row
 synthetic_features = []
 for idx, row in train_df.iterrows():
     features = generate_synthetic_features(row['congestion_enter_rating'])
@@ -84,16 +84,16 @@ for idx, row in train_df.iterrows():
     synthetic_features.append(features)
     
     if (idx + 1) % 2000 == 0:
-        print(f"   İşlendi: {idx + 1}/{len(train_df)}")
+        print(f"   Processed: {idx + 1}/{len(train_df)}")
 
 synthetic_df = pd.DataFrame(synthetic_features)
 train_df = train_df.merge(synthetic_df, on='time_segment_id', how='left')
 
-# Döngüsel özellikler
+# Cyclical features
 train_df['hour_sin'] = np.sin(2 * np.pi * train_df['hour'] / 24)
 train_df['hour_cos'] = np.cos(2 * np.pi * train_df['hour'] / 24)
 
-# Lagged features (basit versiyon)
+# Lagged features (simple version)
 feature_cols = ['vehicle_count_mean', 'density_mean', 'movement_mean']
 for col in feature_cols:
     train_df[f'{col}_lag_1'] = train_df[col].shift(1)
@@ -106,10 +106,10 @@ for col in feature_cols:
 
 train_df = train_df.fillna(0)
 
-print(f"   Toplam özellik sayısı: {len([c for c in train_df.columns if c not in ['responseId', 'view_label', 'ID_enter', 'ID_exit', 'videos', 'video_time', 'datetimestamp_start', 'datetimestamp_end', 'date', 'congestion_enter_rating', 'congestion_exit_rating', 'cycle_phase', 'datetime', 'signaling']])}")
+print(f"   Total feature count: {len([c for c in train_df.columns if c not in ['responseId', 'view_label', 'ID_enter', 'ID_exit', 'videos', 'video_time', 'datetimestamp_start', 'datetimestamp_end', 'date', 'congestion_enter_rating', 'congestion_exit_rating', 'cycle_phase', 'datetime', 'signaling']])}")
 
 # 3. Model eğitimi
-print("\n3. Model eğitimi başlıyor...")
+print("\n3. Starting model training...")
 
 # Özellik sütunları
 exclude_cols = [
@@ -134,12 +134,12 @@ _, _, y_train_exit, y_test_exit = train_test_split(
     X, y_exit, test_size=0.2, random_state=42, stratify=y_exit
 )
 
-print(f"   Eğitim seti: {len(X_train)} örnek")
-print(f"   Test seti: {len(X_test)} örnek")
-print(f"   Özellik sayısı: {X_train.shape[1]}")
+print(f"   Training set: {len(X_train)} samples")
+print(f"   Test set: {len(X_test)} samples")
+print(f"   Feature count: {X_train.shape[1]}")
 
 # Enter modeli
-print("\n   Enter modeli eğitiliyor...")
+print("\n   Training Enter model...")
 model_enter = GradientBoostingClassifier(
     n_estimators=100,  # Demo için daha az
     learning_rate=0.1,
@@ -153,10 +153,10 @@ model_enter.fit(X_train, y_train_enter)
 y_pred_enter = model_enter.predict(X_test)
 acc_enter = accuracy_score(y_test_enter, y_pred_enter)
 
-print(f"   ✓ Enter modeli eğitildi - Test Accuracy: {acc_enter:.4f}")
+print(f"   ✓ Enter model trained - Test Accuracy: {acc_enter:.4f}")
 
 # Exit modeli
-print("\n   Exit modeli eğitiliyor...")
+print("\n   Training Exit model...")
 model_exit = GradientBoostingClassifier(
     n_estimators=100,
     learning_rate=0.1,
@@ -170,11 +170,11 @@ model_exit.fit(X_train, y_train_exit)
 y_pred_exit = model_exit.predict(X_test)
 acc_exit = accuracy_score(y_test_exit, y_pred_exit)
 
-print(f"   ✓ Exit modeli eğitildi - Test Accuracy: {acc_exit:.4f}")
+print(f"   ✓ Exit model trained - Test Accuracy: {acc_exit:.4f}")
 
 # 4. Detaylı sonuçlar
 print("\n" + "=" * 80)
-print("SONUÇLAR")
+print("RESULTS")
 print("=" * 80)
 
 print("\nEnter Congestion Classification Report:")
@@ -193,7 +193,7 @@ print(classification_report(
 
 # 5. En önemli özellikler
 print("\n" + "=" * 80)
-print("EN ÖNEMLİ 10 ÖZELLİK")
+print("TOP 10 FEATURES")
 print("=" * 80)
 
 feature_importance = sorted(
@@ -202,35 +202,35 @@ feature_importance = sorted(
     reverse=True
 )[:10]
 
-print("\nEnter için:")
+print("\nFor Enter:")
 for i, (feat, imp) in enumerate(feature_importance, 1):
     print(f"{i:2d}. {feat:40s} : {imp:.4f}")
 
 print("\n" + "=" * 80)
-print("ÖZET")
+print("SUMMARY")
 print("=" * 80)
 print(f"""
-✅ Model Başarıyla Eğitildi!
+✅ Model Trained Successfully!
 
-Performans:
+Performance:
 - Enter Accuracy: {acc_enter:.2%}
 - Exit Accuracy:  {acc_exit:.2%}
 
-Veri:
-- Eğitim örnekleri: {len(X_train)}
-- Test örnekleri: {len(X_test)}
-- Özellik sayısı: {X_train.shape[1]}
+Data:
+- Training samples: {len(X_train)}
+- Test samples: {len(X_test)}
+- Feature count: {X_train.shape[1]}
 
-NOT: 
-- Bu demo SENTETİK özellikler kullanır
-- Gerçek uygulamada video işleme yapılmalıdır
-- Video dosyaları hazırlandığında traffic_analysis_solution.py çalıştırın
+NOTE: 
+- This demo uses SYNTHETIC features
+- In production, video processing should be implemented
+- Once video files are ready, run traffic_analysis_solution.py
 
-Sonraki Adımlar:
-1. Video dosyalarını videos/ klasörüne koyun
-2. python traffic_analysis_solution.py (gerçek eğitim)
-3. python test_prediction.py (tahmin)
-4. python analyze_results.py (analiz)
+Next Steps:
+1. Place video files under videos/
+2. python traffic_analysis_solution.py (full training)
+3. python test_prediction.py (prediction)
+4. python analyze_results.py (analysis)
 """)
 
 print("=" * 80)
