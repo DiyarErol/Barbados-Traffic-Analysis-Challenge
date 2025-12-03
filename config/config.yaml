@@ -1,0 +1,20 @@
+paths:
+  train_csv: sample_data/Train.csv
+  test_csv: Test.csv
+  models_dir: models
+  experiments_dir: experiments
+  reports_dir: reports
+
+model:
+  type: gradient_boosting
+  params:
+    n_estimators: 200
+    learning_rate: 0.1
+    max_depth: 3
+
+features:
+  time:
+    time_col: video_time
+
+experiment:
+  tracking: json  # options: json, mlflow
