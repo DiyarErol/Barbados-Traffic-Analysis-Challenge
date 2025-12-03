@@ -1,16 +1,26 @@
 # Barbados Traffic Analysis – Modular Pipeline
 
-## Quick Start
+## Quick Start (PowerShell)
 
 ```powershell
+# From the project root
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
+
+# Run the modular pipeline (uses sample_data by default)
 python run_pipeline.py
+
+# Run tests
+pytest -q tests
 ```
 
 - Config: `config/config.yaml`
-- Outputs: `reports/profiling_report.md`, `experiments/experiments.jsonl`, `models/gb_enter.pkl`
-- Sample data: `sample_data/Train.csv`
+- Sample data: `sample_data/Train.csv` (used by default)
+- Outputs:
+	- Profiling: `reports/profiling_report.md` and `reports/profiling.jsonl`
+	- Experiments: `experiments/experiments.jsonl`
+	- Model: `models/gb_enter.pkl` and `models/model_card.md`
 
 ## Architecture Overview
 
@@ -28,6 +38,6 @@ python run_pipeline.py
 - `src/modules/` – modular code
 - `models/` – saved models + model_card
 - `experiments/` – experiment logs
-- `reports/` – profiling and evaluation
+- `reports/` – profiling (`profiling_report.md`, `profiling.jsonl`) and evaluation
 - `tests/` – unit tests
 - `assets/branding/` – logos/banners

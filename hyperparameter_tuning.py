@@ -114,10 +114,10 @@ class HyperparameterTuner:
         Returns:
             Dictionary with best parameters and CV score
         """
-        print(f"\n🔧 {target_name.upper()} Model Tuning Starting...")
-        print(f"   Model: {self.model_type}")
-        print(f"   Search: {self.search_type}")
-        print(f"   CV Folds: {self.cv_folds}")
+        print(f"\n[START] {target_name.upper()} model tuning")
+        print(f"   Model type: {self.model_type}")
+        print(f"   Search method: {self.search_type}")
+        print(f"   CV folds: {self.cv_folds}")
         
         # Get base model and parameter grid
         base_model = self._get_base_model()
@@ -134,14 +134,14 @@ class HyperparameterTuner:
         start_time = time.time()
         
         if self.search_type == 'grid':
-            print(f"   Grid Size: {np.prod([len(v) for v in param_grid.values()]):,} combinations")
+            print(f"   Grid size: {np.prod([len(v) for v in param_grid.values()]):,} combinations")
             search = GridSearchCV(
                 base_model, param_grid, cv=cv,
                 scoring=scorer, n_jobs=self.n_jobs,
                 verbose=1, refit=True
             )
         else:  # random search
-            print(f"   Random Iterations: {n_iter}")
+            print(f"   Random search iterations: {n_iter}")
             search = RandomizedSearchCV(
                 base_model, param_grid, n_iter=n_iter, cv=cv,
                 scoring=scorer, n_jobs=self.n_jobs,
@@ -162,9 +162,9 @@ class HyperparameterTuner:
             'elapsed_time': elapsed_time
         }
         
-        print(f"\n✓ Tuning Completed ({elapsed_time:.1f} seconds)")
-        print(f"   Best CV Score: {search.best_score_:.4f}")
-        print(f"   Best Parameters:")
+        print(f"\n[DONE] Tuning completed in {elapsed_time:.1f} seconds")
+        print(f"   Best CV score: {search.best_score_:.4f}")
+        print(f"   Best parameters:")
         for param, value in search.best_params_.items():
             print(f"      {param}: {value}")
         
@@ -183,10 +183,10 @@ class HyperparameterTuner:
             n_iter: Number of iterations for RandomizedSearch
         """
         print("\n" + "="*60)
-        print(f"🎯 HYPERPARAMETER TUNING - {self.model_type.upper()}")
+        print(f"HYPERPARAMETER TUNING - {self.model_type.upper()}")
         print("="*60)
-        print(f"📊 Training Samples: {len(X_train)}")
-        print(f"🎯 Features: {X_train.shape[1]}")
+        print(f"Training samples: {len(X_train)}")
+        print(f"Feature count: {X_train.shape[1]}")
         
         # Tune Enter model
         enter_results = self.tune_model(X_train, y_enter, 'enter', n_iter)
@@ -201,13 +201,13 @@ class HyperparameterTuner:
         self.search_results['exit'] = exit_results
         
         print("\n" + "="*60)
-        print("✅ TUNING COMPLETED!")
+        print("TUNING COMPLETED")
         print("="*60)
         
         # Summary
-        print("\n📊 Results:")
-        print(f"   Enter CV Score: {enter_results['best_cv_score']:.4f} ({enter_results['elapsed_time']:.1f}s)")
-        print(f"   Exit CV Score: {exit_results['best_cv_score']:.4f} ({exit_results['elapsed_time']:.1f}s)")
+        print("\nResults:")
+        print(f"   Enter CV score: {enter_results['best_cv_score']:.4f} ({enter_results['elapsed_time']:.1f}s)")
+        print(f"   Exit CV score: {exit_results['best_cv_score']:.4f} ({exit_results['elapsed_time']:.1f}s)")
     
     def evaluate_on_test(self, X_test: pd.DataFrame,
                         y_enter_test: pd.Series, y_exit_test: pd.Series) -> Dict:
@@ -237,15 +237,15 @@ class HyperparameterTuner:
         exit_f1 = f1_score(y_exit_test, exit_pred, average='weighted')
         
         print("\n" + "="*60)
-        print("📊 TEST SET EVALUATION")
+        print("TEST SET EVALUATION")
         print("="*60)
-        print(f"\n🎯 Enter Congestion:")
+        print(f"\nEnter congestion:")
         print(f"   Accuracy: {enter_acc:.4f} ({enter_acc*100:.2f}%)")
-        print(f"   F1 Score: {enter_f1:.4f}")
-        
-        print(f"\n🎯 Exit Congestion:")
+        print(f"   F1 score: {enter_f1:.4f}")
+
+        print(f"\nExit congestion:")
         print(f"   Accuracy: {exit_acc:.4f} ({exit_acc*100:.2f}%)")
-        print(f"   F1 Score: {exit_f1:.4f}")
+        print(f"   F1 score: {exit_f1:.4f}")
         
         return {
             'enter_accuracy': enter_acc,
@@ -272,7 +272,7 @@ class HyperparameterTuner:
         }
         joblib.dump(params, params_path)
         
-        print(f"\n💾 Models Saved:")
+        print(f"\nModels saved:")
         print(f"   - {enter_path}")
         print(f"   - {exit_path}")
         print(f"   - {params_path}")
@@ -312,17 +312,19 @@ class HyperparameterTuner:
 def demo_tuning():
     """Demo function for hyperparameter tuning"""
     print("\n" + "="*60)
-    print("🎯 HYPERPARAMETER TUNING DEMO")
+    print("HYPERPARAMETER TUNING DEMO")
     print("="*60)
-    
+
     # Load training data
-    print("\n📁 Loading Data...")
-    train_df = pd.read_csv('Train.csv')
-    
-    print(f"✓ Total Samples: {len(train_df)}")
-    
+    print("\nLoading data...")
+    # Prefer sample_data for quick demo runs
+    csv_path = Path('sample_data/Train.csv') if Path('sample_data/Train.csv').exists() else Path('Train.csv')
+    train_df = pd.read_csv(csv_path)
+
+    print(f"Total samples: {len(train_df)}")
+
     # Generate synthetic features (same as ensemble demo)
-    print("\n🔧 Creating Synthetic Features...")
+    print("\nCreating synthetic features...")
     np.random.seed(42)
     
     features = pd.DataFrame()
@@ -376,8 +378,8 @@ def demo_tuning():
         stratify=y_enter_subset
     )
     
-    print(f"✓ Training Set: {len(X_train)} samples")
-    print(f"✓ Test Set: {len(X_test)} samples")
+    print(f"Training set size: {len(X_train)} samples")
+    print(f"Test set size: {len(X_test)} samples")
     
     # Test RandomizedSearch (faster)
     print("\n" + "="*60)
